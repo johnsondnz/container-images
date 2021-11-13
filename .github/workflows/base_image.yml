@@ -2,8 +2,8 @@ name: Base Image Build
 on:
   push:
     branches: [ "master" ]
-    paths:
-      - 'builds/base_image/**'
+    # paths:
+    #   - 'builds/base_image/**'
   schedule:
     - cron: 0 0 1 * *
 
