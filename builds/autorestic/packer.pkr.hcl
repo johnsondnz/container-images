@@ -56,11 +56,6 @@ build {
     destination = "/etc/tests.sh"
   }
 
-  provisioner "file" {
-    source      = "${path.root}/files/init.sh"
-    destination = "/init.sh"
-  }
-
   // Minimal container for runners
   provisioner "shell" {
     inline = [
