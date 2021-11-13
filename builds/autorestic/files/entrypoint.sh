@@ -23,6 +23,7 @@ if [ $# -eq 0 ]; then
     echo "==> Restic configuration not found in '/config/config/yaml'"
     echo "Exiting..."
     exit 1
+  fi
 
 elif [ $1 == 'bash' ]; then
   bash

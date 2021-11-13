@@ -32,6 +32,7 @@ source "docker" "container_image" {
   pull   = true
   changes = [
     "ENV CRONTAB * * * * * echo 'hello-world'",
+    "ENV TZ UTC",
     "WORKDIR /home/${var.default_user}",
     "ENTRYPOINT [\"/entrypoint.sh\"]",
   ]
@@ -67,7 +68,6 @@ build {
     inline = [
       "export DEBIAN_FRONTEND=noninteractive",
       "apt update && apt install --no-install-recommends -yqq curl software-properties-common gnupg2",
-      "apt update -yqq",
       "xargs -a /etc/apt-requirements.txt apt install -yqq",
       "[ -s /etc/pip-requirements.txt ] && echo '==> Install more pip packages' && pip3 install --no-cache-dir -r /etc/pip-requirements.txt || echo '==> No additional packages to install'",
       "echo 'export PATH=/home/${var.default_user}/.local/bin:$PATH' >> /home/${var.default_user}/.bashrc",
