@@ -77,7 +77,8 @@ build {
       "apt autoclean",
       "rm -rf /var/lib/apt/lists/*",
       "rm /etc/pip-requirements.txt",
-      "rm /etc/apt-requirements.txt"
+      "rm /etc/apt-requirements.txt",
+      "rm -rf /etc/cron.*/*"
     ]
   }
 
