@@ -36,6 +36,7 @@ jobs:
 
 name: Base Image Build (Manual)
 on:
+  workflow_dispatch:
 
 env:
   DIR: builds/base_image
