@@ -31,7 +31,7 @@ source "docker" "container_image" {
   commit = true
   pull   = true
   changes = [
-    "WORKDIR /home/${var.default_user}/projects",
+    "WORKDIR /home/${var.default_user}",
     "ENTRYPOINT [\"/bin/bash\", \"-c\"]",
     "CMD [\"pre-commit run --all-files\"]",
   ]
