@@ -17,8 +17,8 @@ if [ $# -eq 0 ]; then
     echo "==> Get cron settings"
     /usr/bin/crontab -l
 
-    echo "==> Starting crond"
-    /usr/sbin/crond -f -d 6
+    echo "==> Starting cron in foreground"
+    /usr/sbin/cron -f
   else
     echo "==> Restic configuration not found in '/config/config/yaml'"
     echo "Exiting..."
