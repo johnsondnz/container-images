@@ -26,9 +26,11 @@ if [ $# -eq 0 ]; then
   fi
 
 elif [ $1 == 'bash' ]; then
-  bash
+  zsh
 elif [ $1 == 'shell' ]; then
-  bash
+  zsh
 elif [ $1 == 'sh' ]; then
-  bash
+  zsh
+elif [ $1 == 'zsh' ]; then
+  zsh
 fi
