@@ -1,0 +1,5 @@
+docker_registry = "ghcr.io/johnsondnz/container-images"
+container_name  = "base_image"
+default_user    = "generic"
+default_uid     = "1000"
+image_source    = "python:3-slim"
