@@ -2,7 +2,7 @@
 Container container restic and autorestic, plus crond.
 
 # Config
-Add file to /config/config.yaml
+Add file to `/config/config.yaml`
 
 ## Example
 ```
@@ -23,5 +23,52 @@ locations:
 ```
 
 # Environment Variables
-Expects
-- CRONTAB: default '* * * * * echo 'hello-world''
+- CRONTAB: default = `* * * * * echo 'hello-world'`
+- TZ: default = `UTC`
+
+## Example
+```
+➜  autorestic-container git:(master) ✗ docker run -it --rm \
+-v $(pwd):/src \
+-v /tmp/test:/dst \
+-v $(pwd)/scripts:/scripts \
+-v $(pwd)/config:/config \
+-e CRONTAB="* * * * * /usr/local/bin/autorestic backup -c /config/config.yaml --ci -a --verbose" \
+ghcr.io/johnsondnz/container-images/autorestic:2021.11
+==> Setup Crontab with
+==> Setup timezone
+cp: '/usr/share/zoneinfo/UTC' and '/etc/localtime' are the same file
+Nothing to do
+==> Initiliase restic
+Using config: 	 /config/config.yaml
+> Executing: /usr/bin/restic snapshots
+Everything is fine.
+==> Parsing and loading cron
+==> Get cron settings
+* * * * * /usr/local/bin/autorestic backup -c /config/config.yaml --ci -a --verbose >/proc/1/fd/1 2>/proc/1/fd/2
+==> Starting cron in foreground
+Using config: 	 /config/config.yaml
+
+
+    Backing up location "test"
+
+Executing under: "/src"
+Backend: temp
+> Executing: /usr/bin/restic backup .
+
+Files:          51 new,     0 changed,     0 unmodified
+Dirs:           29 new,     0 changed,     0 unmodified
+Added to the repo: 3.892 KiB
+
+processed 51 files, 53.174 KiB in 0:00
+snapshot d89e0cf0 saved
+
+
+Running hooks
+> python3 /scripts/success.py
+> Executing: /bin/bash -c python3 /scripts/success.py
+Success
+
+
+Done
+```
