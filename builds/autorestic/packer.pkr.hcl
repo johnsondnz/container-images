@@ -61,13 +61,9 @@ build {
     inline = [
       "export DEBIAN_FRONTEND=noninteractive",
       "apt update && apt install --no-install-recommends -yqq curl software-properties-common gnupg2",
-      "curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -",
-      "apt-add-repository \"deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main\"",
       "apt update -yqq",
       "xargs -a /etc/apt-requirements.txt apt install -yqq",
       "[ -s /etc/pip-requirements.txt ] && echo '==> Install more pip packages' && pip3 install --no-cache-dir -r /etc/pip-requirements.txt || echo '==> No additional packages to install'",
-      "groupadd ${var.default_user} --gid ${var.default_uid}",
-      "useradd ${var.default_user} --uid ${var.default_uid} --gid ${var.default_uid} -m --shell /bin/bash",
       "echo 'export PATH=/home/${var.default_user}/.local/bin:$PATH' >> /home/${var.default_user}/.bashrc",
       "curl -s https://raw.githubusercontent.com/CupCakeArmy/autorestic/master/install.sh | bash",
       "apt autoremove -yqq --purge",

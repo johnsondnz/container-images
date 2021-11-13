@@ -5,7 +5,7 @@ on:
     paths:
       - 'builds/autorestic/**'
   schedule:
-    - cron: 0 1 1 * *
+    - cron: 10 0 1 * *
 
 env:
   DIR: builds/autorestic
