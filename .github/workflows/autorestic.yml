@@ -33,3 +33,33 @@ jobs:
 
       - name: Packer build
         run: packer build  -var-file ${{ env.DIR }}/packer.auto.pkrvars.hcl ${{ env.DIR }}/packer.pkr.hcl
+
+name: Autorestic Image Build (Manual)
+on:
+  workflow_dispatch:
+
+env:
+  DIR: builds/autorestic
+
+jobs: 
+  build:
+    name: Build autorestic container
+    runs-on: ubuntu-latest
+    if: contains( github.ref, 'master')
+
+    steps:
+      - name: Log into ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout git repo
+        uses: actions/checkout@v2
+
+      - name: Packer validate
+        run: packer validate -var-file ${{ env.DIR }}/packer.auto.pkrvars.hcl ${{ env.DIR }}/packer.pkr.hcl
+
+      - name: Packer build
+        run: packer build  -var-file ${{ env.DIR }}/packer.auto.pkrvars.hcl ${{ env.DIR }}/packer.pkr.hcl
