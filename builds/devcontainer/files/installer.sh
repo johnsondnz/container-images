@@ -24,6 +24,9 @@ echo "==> Install apt packages"
 apt update -qq
 xargs -a /etc/apt-requirements.txt apt install --no-install-recommends -yqq
 
+echo "==> Install ms-vsliveshare.vsliveshare prerequisites"
+curl -fsSL https://aka.ms/vsls-linux-prereq-script | sh -
+
 echo "==> Cleanup"
 apt autoremove -yqq --purge
 apt autoclean
