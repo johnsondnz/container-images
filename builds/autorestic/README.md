@@ -33,8 +33,8 @@ locations:
 -v /tmp/test:/dst \
 -v $(pwd)/scripts:/scripts \
 -v $(pwd)/config:/config \
--e CRONTAB="* * * * * /usr/local/bin/autorestic backup -c /config/config.yaml --ci -a --verbose" \
-ghcr.io/johnsondnz/container-images/autorestic:2021.11
+-e CRONTAB="* * * * * autorestic backup -c /config/config.yaml --ci -a --verbose" \
+ghcr.io/johnsondnz/container-images/autorestic:latest
 ==> Setup Crontab with
 ==> Setup timezone
 cp: '/usr/share/zoneinfo/UTC' and '/etc/localtime' are the same file
@@ -45,7 +45,7 @@ Using config: 	 /config/config.yaml
 Everything is fine.
 ==> Parsing and loading cron
 ==> Get cron settings
-* * * * * /usr/local/bin/autorestic backup -c /config/config.yaml --ci -a --verbose >/proc/1/fd/1 2>/proc/1/fd/2
+* * * * * autorestic backup -c /config/config.yaml --ci -a --verbose >/proc/1/fd/1 2>/proc/1/fd/2
 ==> Starting cron in foreground
 Using config: 	 /config/config.yaml
 
