@@ -2,8 +2,8 @@ name: Autorestic Image Build
 on:
   push:
     branches: [ "master" ]
-    # paths:
-    #   - 'builds/autorestic/**'
+    paths:
+      - 'builds/autorestic/**'
   schedule:
     - cron: 0 1 1 * *
 
