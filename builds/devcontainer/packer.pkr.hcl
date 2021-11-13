@@ -33,7 +33,7 @@ source "docker" "container_image" {
   changes = [
     "WORKDIR /home/${var.default_user}",
     "ENTRYPOINT [\"/bin/bash\", \"-c\"]",
-    "CMD [\"/bin/bash\"]",
+    "CMD [\"/bin/zsh\"]",
     "USER ${var.default_user}"
   ]
 }
