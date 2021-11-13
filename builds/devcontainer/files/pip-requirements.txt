@@ -1,0 +1,9 @@
+black
+pre-commit
+interrogate
+flake8
+pyyaml
+argparse
+pytest
+logzero
+mypy

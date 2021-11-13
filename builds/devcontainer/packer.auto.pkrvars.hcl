@@ -1,0 +1,5 @@
+docker_registry = "ghcr.io/johnsondnz/container-images"
+container_name  = "devconatiner"
+default_user    = "generic"
+default_uid     = "1000"
+image_source    = "ghcr.io/johnsondnz/container-images/base_image:latest"

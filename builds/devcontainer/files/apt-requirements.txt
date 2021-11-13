@@ -1,0 +1,9 @@
+curl
+wget
+cron
+bzip2
+git
+sudo
+vim
+packer
+terraform

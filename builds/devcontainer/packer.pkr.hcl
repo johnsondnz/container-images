@@ -31,10 +31,10 @@ source "docker" "container_image" {
   commit = true
   pull   = true
   changes = [
-    "ENV CRONTAB * * * * * echo 'hello-world'",
-    "ENV TZ UTC",
     "WORKDIR /home/${var.default_user}",
-    "ENTRYPOINT [\"/entrypoint.sh\"]",
+    "ENTRYPOINT [\"/bin/bash\", \"-c\"]",
+    "CMD [\"/bin/bash\"]",
+    "USER ${var.default_user}"
   ]
 }
 build {
@@ -59,11 +59,6 @@ build {
   }
 
   provisioner "file" {
-    source      = "${path.root}/files/entrypoint.sh"
-    destination = "/entrypoint.sh"
-  }
-
-  provisioner "file" {
     source      = "${path.root}/files/installer.sh"
     destination = "/installer.sh"
   }
@@ -71,6 +66,11 @@ build {
   provisioner "shell" {
     inline = [
       "bash -c /installer.sh",
+      "echo 'export GPG_TTY=\"$(tty)\"' >> /home/${var.default_user}/.bashrc",
+      "mkdir /home/${var.default_user}/.gnupg",
+      "chown -R ${var.default_user} /home/${var.default_user}/.gnupg",
+      "echo ${var.default_user} ALL=\"(root)\" NOPASSWD:ALL > /etc/sudoers.d/${var.default_user}",
+      "chmod 0440 /etc/sudoers.d/${var.default_user}",
     ]
   }
 

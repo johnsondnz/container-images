@@ -33,7 +33,7 @@ source "docker" "container_image" {
   changes = [
     "WORKDIR /home/${var.default_user}",
     "ENTRYPOINT [\"/bin/bash\", \"-c\"]",
-    "CMD [\"pre-commit run --all-files\"]",
+    "CMD [\"/bin/bash\"]",
   ]
 }
 build {
@@ -62,24 +62,22 @@ build {
     destination = "/init.sh"
   }
 
-  // Minimal container for runners
+  provisioner "file" {
+    source      = "${path.root}/files/installer.sh"
+    destination = "/installer.sh"
+  }
+
   provisioner "shell" {
     inline = [
-      "export DEBIAN_FRONTEND=noninteractive",
-      "apt update && apt install --no-install-recommends -yqq curl software-properties-common gnupg2",
-      "apt update -yqq",
-      "xargs -a /etc/apt-requirements.txt apt install -yqq",
-      "[ -s /etc/pip-requirements.txt ] && echo '==> Install more pip packages' && pip3 install --no-cache-dir -r /etc/pip-requirements.txt || echo '==> No additional packages to install'",
       "groupadd ${var.default_user} --gid ${var.default_uid}",
       "useradd ${var.default_user} --uid ${var.default_uid} --gid ${var.default_uid} -m --shell /bin/bash",
-      "echo 'export PATH=/home/${var.default_user}/.local/bin:$PATH' >> /home/${var.default_user}/.bashrc",
-      "apt autoremove -yqq --purge",
-      "apt autoclean",
-      "rm -rf /var/lib/apt/lists/*",
-      "rm /etc/pip-requirements.txt",
-      "rm /etc/apt-requirements.txt",
-      "rm -rf /etc/cron.*/*"
+      "bash -c /installer.sh"
     ]
+  }
+
+  provisioner "file" {
+    source      = "${path.root}/files/.zshrc"
+    destination = "/home/${var.default_user}/.zshrc"
   }
 
   // Create container images with tags
