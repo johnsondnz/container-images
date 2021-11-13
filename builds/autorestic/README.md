@@ -25,4 +25,3 @@ locations:
 # Environment Variables
 Expects
 - CRONTAB: default '* * * * * echo 'hello-world''
-
