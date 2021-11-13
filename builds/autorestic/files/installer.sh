@@ -15,6 +15,9 @@ echo "==> Install apt packages"
 apt update -qq
 xargs -a /etc/apt-requirements.txt apt install --no-install-recommends -yqq
 
+echo "==> Install autorestic"
+wget -qO - https://raw.githubusercontent.com/CupCakeArmy/autorestic/master/install.sh | bash
+
 echo "==> Cleanup"
 apt purge -yqq git
 apt autoremove -yqq --purge
