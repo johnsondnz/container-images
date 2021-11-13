@@ -15,9 +15,6 @@ echo "==> Install apt packages"
 apt update -qq
 xargs -a /etc/apt-requirements.txt apt install --no-install-recommends -yqq
 
-echo "==> Install oh-my-zsh for generic user"
-runuser -l generic -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
-
 echo "==> Cleanup"
 apt purge -yqq git
 apt autoremove -yqq --purge
