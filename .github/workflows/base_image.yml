@@ -6,6 +6,7 @@ on:
       - 'builds/base_image/**'
   schedule:
     - cron: 0 0 1 * *
+  workflow_dispatch:
 
 env:
   DIR: builds/base_image

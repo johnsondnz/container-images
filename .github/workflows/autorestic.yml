@@ -6,6 +6,7 @@ on:
       - 'builds/autorestic/**'
   schedule:
     - cron: 10 0 1 * *
+  workflow_dispatch:
 
 env:
   DIR: builds/autorestic
