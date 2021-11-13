@@ -7,3 +7,4 @@ sudo
 vim
 packer
 terraform
+openssh-client
