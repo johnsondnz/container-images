@@ -56,6 +56,11 @@ build {
     destination = "/etc/tests.sh"
   }
 
+  provisioner "file" {
+    source      = "${path.root}/files/entrypoint.sh"
+    destination = "/entrypoint.sh"
+  }
+
   // Minimal container for runners
   provisioner "shell" {
     inline = [
