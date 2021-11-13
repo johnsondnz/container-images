@@ -4,6 +4,8 @@ on:
     branches: [ "master" ]
   schedule:
     - cron: 0 0 1 * *
+  paths:
+    - 'builds/base_image/**'
 
 env:
   DIR: builds/base_image
