@@ -40,13 +40,7 @@ Container for vscode devleopment
         "-v",
         "${localEnv:HOME}/.ssh:/home/generic/.ssh:ro",
         "-v",
-        "${localEnv:HOME}/.kube/config:/home/generic/.kube/config:ro",
-        "-v",
-        "${localEnv:HOME}/.gnupg/private-keys-v1.d:/home/generic/.gnupg/private-keys-v1.d:ro",
-        "-v",
-        "${localEnv:HOME}/.gnupg/pubring.kbx:/home/generic/.gnupg/pubring.kbx:ro",
-        "-v",
-        "${localEnv:HOME}/.gnupg/trustdb.gpg:/home/generic/.gnupg/trustdb.gpg:ro"
+        "${localEnv:HOME}/.gitconfig:/home/generic/.gitconfig:ro",
     ],
     "postCreateCommand": ".devcontainer/entrypoint.sh"
 }
