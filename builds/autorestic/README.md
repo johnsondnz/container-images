@@ -6,20 +6,23 @@ Add file to `/config/config.yaml`
 
 ## Example
 ```
-backends:
-  temp:
-    type: local
-    path: /dst
 locations:
   test:
     from: /src
     to:
     - temp
+    cron: '0 0 * * *' # Midnight
     hooks:
       success:
       - python3 /scripts/success.py
       failure:
       - python3 /scripts/failure.py
+
+backends:
+  temp:
+    type: local
+    path: /dst
+
 ```
 
 # Environment Variables

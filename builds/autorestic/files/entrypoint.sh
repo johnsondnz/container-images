@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "==> Setup Crontab with $CRON"
-echo "$CRONTAB >/proc/1/fd/1 2>/proc/1/fd/2" > /crontab
+echo "PATH="/usr/local/bin:/usr/bin:/bin" > /crontab
+echo "$CRONTAB --ci cron >/proc/1/fd/1 2>/proc/1/fd/2" >> /crontab
 
 echo "==> Setup timezone"
 cp /usr/share/zoneinfo/$TZ /etc/localtime || echo 'Nothing to do'
