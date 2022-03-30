@@ -1,0 +1,4 @@
+requests
+logzero
+plexapi
+PyYAML>=5.2
