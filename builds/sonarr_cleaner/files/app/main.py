@@ -94,7 +94,7 @@ def main():
         print("\n" * 1)
         logger.info("==> Querying Sonarr...")
         sonarr_sdk = SonarrAPI(config)
-        sonarr_shows = sonarr_sdk.get_sonarr_shows()
+        sonarr_shows = sonarr_sdk.get_sonarr_shows
         # print(json.dumps(sonarr_shows, indent=4))
 
         for series, series_data in plex_data.items():

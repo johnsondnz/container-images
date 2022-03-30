@@ -44,6 +44,7 @@ class SonarrAPI(object):
         session.mount("https://", adapter)
         return session
 
+    @property
     def get_sonarr_shows(self) -> dict:
         """
         Gets all the sonar series data, not episodes or lower though
