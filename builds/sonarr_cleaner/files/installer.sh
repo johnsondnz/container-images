@@ -15,12 +15,6 @@ echo "==> Install apt packages"
 apt update -qq
 xargs -a /etc/apt-requirements.txt apt install --no-install-recommends -yqq
 
-echo "==> Install autorestic"
-wget -qO - https://raw.githubusercontent.com/CupCakeArmy/autorestic/master/install.sh | bash
-
-echo "==> Symlink autorestic for cron env"
-ln -s /usr/local/bin/autorestic /usr/bin/autorestic
-
 echo "==> Cleanup"
 apt purge -yqq git
 apt autoremove -yqq --purge
