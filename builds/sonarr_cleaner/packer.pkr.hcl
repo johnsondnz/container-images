@@ -31,8 +31,6 @@ source "docker" "container_image" {
   commit = true
   pull   = true
   changes = [
-    "ENV CRONTAB * * * * * echo 'hello-world'",
-    "ENV TZ UTC",
     "WORKDIR /home/${var.default_user}",
     "ENTRYPOINT [\"/entrypoint.sh\"]",
   ]
