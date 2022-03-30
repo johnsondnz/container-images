@@ -25,6 +25,7 @@ echo "==> Cleanup"
 apt purge -yqq git
 apt autoremove -yqq --purge
 apt autoclean
+apt clean
 rm -rf /var/lib/apt/lists/*
 rm /etc/pip-requirements.txt
 rm /etc/apt-requirements.txt
