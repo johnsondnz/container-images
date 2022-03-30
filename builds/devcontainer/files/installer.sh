@@ -30,6 +30,7 @@ curl -fsSL https://aka.ms/vsls-linux-prereq-script | sh -
 echo "==> Cleanup"
 apt autoremove -yqq --purge
 apt autoclean
+apt clean
 rm -rf /var/lib/apt/lists/*
 rm /etc/pip-requirements.txt
 rm /etc/apt-requirements.txt

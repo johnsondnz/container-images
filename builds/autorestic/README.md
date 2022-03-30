@@ -1,5 +1,5 @@
 # Into
-Container container restic and autorestic, plus crond.
+Container containing restic and autorestic, plus crond.
 
 # Config
 Add file to `/config/config.yaml`
