@@ -1,5 +1,5 @@
 # Into
-Container for vscode devleopment
+Container for vscode development
 
 # Usage
 ## Config
