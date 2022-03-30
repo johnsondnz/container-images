@@ -2,7 +2,11 @@
 Container for deleting watched plex content and unprotected content from sonarr and NAS.  This container is designed to run and exit, recommended to run as a daily cron job.
 
 # Config
-Add file to `/app/config/config.yaml`
+Add file to `/app/config/main.yml`
+
+# Environment Variables
+- CRONTAB: default = `0 0 * * * python3 /app/main.py`
+- TZ: default = `UTC`
 
 ## Example
 ```
