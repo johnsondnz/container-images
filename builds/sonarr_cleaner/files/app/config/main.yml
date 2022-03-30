@@ -1,0 +1,13 @@
+---
+devel: false
+
+plex_config:
+    base_url: "http://localhost:32400"
+    token: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    library_name: "TV Shows" # Name of the Library, no special characters please.
+
+sonarr_config:
+    base_url: "http://localhost:8989"
+    api_key: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+protected: []
