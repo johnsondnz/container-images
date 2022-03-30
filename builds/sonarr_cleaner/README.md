@@ -1,77 +1,95 @@
 # Into
-Container for deleting watch and unprotected content from sonarr / radarr.
+Container for deleting watched plex content and unprotected content from sonarr and NAS.
 
 # Config
-Add file to `/config/config.yaml`
+Add file to `/app/config/config.yaml`
 
 ## Example
 ```
-locations:
-  test:
-    from: /src
-    to:
-    - temp
-    cron: '0 0 * * *' # Midnight
-    hooks:
-      success:
-      - python3 /scripts/success.py
-      failure:
-      - python3 /scripts/failure.py
+---
+devel: false
 
-backends:
-  temp:
-    type: local
-    path: /dst
+plex_config:
+    base_url: "http://localhost:32400"
+    token: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    library_name: "TV Shows" # Name of the Library, no special characters please.
 
+sonarr_config:
+    base_url: "http://localhost:8989"
+    api_key: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+protected:
+    - Friends
+    - Stargate SG-1
+    - Stargate Origins
+    - Stargate Atlantis
+    - Stargate Universe
+    - "Mr. Robot"
+    - Game of Thrones
+    - Firefly
+    - The Expanse
+    - "Battlestar Galactica (2003)"
+    - Battlestar Galactica
+    - Chernobyl
+    - Breaking Bad
+    - The Mandalorian
+    - Obi-Wan Kenobi
+    - "RuPaul's Drag Race"
+    - "RuPaul's Drag Race All Stars"
+    - "RuPaul's Drag Race UK"
+    - "RuPaul's Drag Race UK vs The World"
+    - "Canada's Drag Race"
+    - "Star Trek: Discovery"
+    - "Star Trek: Picard"
+    - "Schitt's Creek"
+    - Project Runway
+    - The Pacific
+    - Band of Brothers
+    - Masters of the Air
 ```
 
-# Environment Variables
-- CRONTAB: default = `* * * * * echo 'hello-world'`
-- TZ: default = `UTC`
-
-## Example
+## Runtime Example
 ```
-➜  autorestic-container git:(master) ✗ docker run -it --rm \
--v $(pwd):/src \
--v /tmp/test:/dst \
--v $(pwd)/scripts:/scripts \
--v $(pwd)/config:/config \
--e CRONTAB="* * * * * autorestic backup -c /config/config.yaml --ci -a --verbose" \
-ghcr.io/johnsondnz/container-images/autorestic:latest
-==> Setup Crontab with
-==> Setup timezone
-cp: '/usr/share/zoneinfo/UTC' and '/etc/localtime' are the same file
-Nothing to do
-==> Initiliase restic
-Using config: 	 /config/config.yaml
-> Executing: /usr/bin/restic snapshots
-Everything is fine.
-==> Parsing and loading cron
-==> Get cron settings
-* * * * * autorestic backup -c /config/config.yaml --ci -a --verbose >/proc/1/fd/1 2>/proc/1/fd/2
-==> Starting cron in foreground
-Using config: 	 /config/config.yaml
-
-
-    Backing up location "test"
-
-Executing under: "/src"
-Backend: temp
-> Executing: /usr/bin/restic backup .
-
-Files:          51 new,     0 changed,     0 unmodified
-Dirs:           29 new,     0 changed,     0 unmodified
-Added to the repo: 3.892 KiB
-
-processed 51 files, 53.174 KiB in 0:00
-snapshot d89e0cf0 saved
-
-
-Running hooks
-> python3 /scripts/success.py
-> Executing: /bin/bash -c python3 /scripts/success.py
-Success
-
-
-Done
+➜  app git:(master) ✗ python3 main.py
+[I 220330 03:15:48 logger:46] ==> Querying Plex Media Server...
+[I 220330 03:15:48 logger:46] Series: 'Battlestar Galactica' is protected
+[I 220330 03:15:48 logger:46] Series: 'Canada's Drag Race' is protected
+[I 220330 03:15:48 logger:46] Series: 'Chernobyl' is protected
+[I 220330 03:15:48 logger:46] Series: 'The Expanse' is protected
+[I 220330 03:15:49 logger:46] Series: 'The Mandalorian' is protected
+[I 220330 03:15:49 logger:46] Series: 'Mr. Robot' is protected
+[I 220330 03:15:49 logger:46] Series: 'Project Runway' is protected
+[I 220330 03:15:49 logger:46] Series: 'RuPaul's Drag Race' is protected
+[I 220330 03:15:49 logger:46] Series: 'RuPaul's Drag Race UK vs The World' is protected
+[I 220330 03:15:49 logger:46] Series: 'Star Trek: Discovery' is protected
+[I 220330 03:15:49 logger:46] Series: 'Star Trek: Picard' is protected
+[I 220330 03:15:49 logger:46] Series: 'Stargate Atlantis' is protected
+[I 220330 03:15:49 logger:46] Series: 'Stargate SG-1' is protected
+[I 220330 03:15:49 logger:46] Series: 'Stargate Universe' is protected
+[W 220330 03:11:50 logger:38] Series: '8 Out of 10 Cats Does Countdown' s22e01 is watched, scheduling for deletion
+[W 220330 03:11:50 logger:38] Series: '8 Out of 10 Cats Does Countdown' s22e02 is watched, scheduling for deletion
+[W 220330 03:11:50 logger:38] Series: '8 Out of 10 Cats Does Countdown' s22e03 is watched, scheduling for deletion
+[W 220330 03:11:50 logger:38] Series: '8 Out of 10 Cats Does Countdown' s22e04 is watched, scheduling for deletion
+[W 220330 03:11:50 logger:38] Series: '8 Out of 10 Cats Does Countdown' s22e05 is watched, scheduling for deletion
+[W 220330 03:11:50 logger:38] Series: '8 Out of 10 Cats Does Countdown' s22e06 is watched, scheduling for deletion
+[I 220330 03:11:50 logger:46] ==> Querying Sonarr...
+[W 220330 03:11:53 logger:38] Unmonitoring '8 Out of 10 Cats Does Countdown' season: 22, episode: 1
+[W 220330 03:11:53 logger:38] Episode unmonitored, starting deletion process...
+[W 220330 03:11:54 logger:38] Delete completed successfully
+[W 220330 03:11:54 logger:38] Unmonitoring '8 Out of 10 Cats Does Countdown' season: 22, episode: 2
+[W 220330 03:11:54 logger:38] Episode unmonitored, starting deletion process...
+[W 220330 03:11:55 logger:38] Delete completed successfully
+[W 220330 03:11:55 logger:38] Unmonitoring '8 Out of 10 Cats Does Countdown' season: 22, episode: 3
+[W 220330 03:11:55 logger:38] Episode unmonitored, starting deletion process...
+[W 220330 03:11:56 logger:38] Delete completed successfully
+[W 220330 03:11:56 logger:38] Unmonitoring '8 Out of 10 Cats Does Countdown' season: 22, episode: 4
+[W 220330 03:11:56 logger:38] Episode unmonitored, starting deletion process...
+[W 220330 03:11:57 logger:38] Delete completed successfully
+[W 220330 03:11:57 logger:38] Unmonitoring '8 Out of 10 Cats Does Countdown' season: 22, episode: 5
+[W 220330 03:11:57 logger:38] Episode unmonitored, starting deletion process...
+[W 220330 03:11:57 logger:38] Delete completed successfully
+[W 220330 03:11:57 logger:38] Unmonitoring '8 Out of 10 Cats Does Countdown' season: 22, episode: 6
+[W 220330 03:11:58 logger:38] Episode unmonitored, starting deletion process...
+[W 220330 03:11:58 logger:38] Delete completed successfully
+[I 220330 03:15:49 logger:46] ==> Script completed, exiting.
 ```
