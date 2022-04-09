@@ -13,7 +13,7 @@ tar -xzf terraform-docs.tar.gz
 install -o root -g root -m 0755 terraform-docs /usr/bin/terraform-docs
 rm ./terraform-docs.tar.gz
 
-echo "==> Install terraform and packer repo"
+echo "==> Install hashicorp repo"
 curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 
