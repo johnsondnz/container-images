@@ -31,7 +31,8 @@ source "docker" "container_image" {
   commit = true
   pull   = true
   changes = [
-    "WORKDIR /home/${var.default_user}",
+    "WORKDIR /opt/actions-runner",
+    "USER generic",
     "ENTRYPOINT [\"/entrypoint.sh\"]",
   ]
 }
