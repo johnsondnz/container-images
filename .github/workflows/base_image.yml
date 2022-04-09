@@ -1,9 +1,9 @@
 name: Base Image Build
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
     paths:
-      - 'builds/base_image/**'
+      - "builds/base_image/**"
   schedule:
     - cron: 0 0 1 * *
   workflow_dispatch:
@@ -11,10 +11,10 @@ on:
 env:
   DIR: builds/base_image
 
-jobs: 
+jobs:
   build:
     name: Build base_image container
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: contains( github.ref, 'master')
 
     steps:

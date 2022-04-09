@@ -1,9 +1,9 @@
 name: Devcontainer Image Build
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
     paths:
-      - 'builds/devcontainer/**'
+      - "builds/devcontainer/**"
   schedule:
     - cron: 10 0 1 * *
   workflow_dispatch:
@@ -11,10 +11,10 @@ on:
 env:
   DIR: builds/devcontainer
 
-jobs: 
+jobs:
   build:
     name: Build devcontainer container
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: contains( github.ref, 'master')
 
     steps:

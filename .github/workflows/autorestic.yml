@@ -1,9 +1,9 @@
 name: Autorestic Image Build
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
     paths:
-      - 'builds/autorestic/**'
+      - "builds/autorestic/**"
   schedule:
     - cron: 10 0 1 * *
   workflow_dispatch:
@@ -11,10 +11,10 @@ on:
 env:
   DIR: builds/autorestic
 
-jobs: 
+jobs:
   build:
     name: Build autorestic container
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: contains( github.ref, 'master')
 
     steps:
