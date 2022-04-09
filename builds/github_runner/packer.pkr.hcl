@@ -67,6 +67,11 @@ build {
     destination = "/installer.sh"
   }
 
+  provisioner "file" {
+    source      = "${path.root}/files/start.sh"
+    destination = "/start.sh"
+  }
+
   provisioner "shell" {
     inline = [
       "bash -c /installer.sh",
