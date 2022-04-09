@@ -39,7 +39,9 @@
         "-v",
         "${localEnv:HOME}/.gnupg/pubring.kbx:/home/generic/.gnupg/pubring.kbx:ro",
         "-v",
-        "${localEnv:HOME}/.gnupg/trustdb.gpg:/home/generic/.gnupg/trustdb.gpg:ro"
+        "${localEnv:HOME}/.gnupg/trustdb.gpg:/home/generic/.gnupg/trustdb.gpg:ro",
+        "-v",
+        "/var/run/docker.sock:/var/run/docker.sock"
     ],
     "postCreateCommand": ".devcontainer/entrypoint.sh"
 }
