@@ -24,6 +24,9 @@ find . -iname 'actions-runner-linux*.tar.gz' -exec rm {} \;
 echo "==> Set ownership of /opt/actions-runner"
 chown -R generic:generic /opt/actions-runner
 
+echo "==> Install dependencies"
+bash /opt/actions-runner/bin/installdependencies.sh
+
 echo "==> Cleanup"
 apt purge -yqq git
 apt autoremove -yqq --purge
