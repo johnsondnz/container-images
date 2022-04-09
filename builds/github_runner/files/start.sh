@@ -27,9 +27,9 @@ cleanup() {
     ./config.sh remove --unattended --token ${REG_TOKEN}
 }
 
-if [[ -z $ORGANIZATION ]]; then
+if ! [[ -z $ORGANIZATION ]]; then
     org
-elif [[ -z $GITHUB_USERNAME ]]; then
+elif ! [[ -z $GITHUB_USERNAME ]]; then
     individual
 fi
 
