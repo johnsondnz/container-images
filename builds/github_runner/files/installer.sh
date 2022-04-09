@@ -26,6 +26,14 @@ chown -R generic:generic /opt/actions-runner
 echo "==> Install dependencies"
 bash /opt/actions-runner/bin/installdependencies.sh
 
+echo "==> Install docker binary for command/control and packer builds"
+curl -fsSL https://get.docker.com | sh
+usermod -aG docker generic
+
+echo "==> Install hashicorp repo"
+curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+
 echo "==> Cleanup"
 apt-get autoremove -yqq --purge
 apt-get autoclean
