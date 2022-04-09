@@ -16,7 +16,7 @@ apt update -qq
 xargs -a /etc/apt-requirements.txt apt install --no-install-recommends -yqq
 
 echo "==> Install GitHub Runner"
-mkdir -p /opt/actions-runner && cd actions-runner
+mkdir -p /opt/actions-runner && cd /opt/actions-runner
 curl -s https://api.github.com/repos/actions/runner/releases/latest | grep -E "browser_download_url.*linux-x64-([0-9\.]*)\.tar.gz" | cut -d : -f 2,3 | tr -d \" | wget -qi -
 find . -iname 'actions-runner-linux*.tar.gz' -exec tar xzf {} \;
 find . -iname 'actions-runner-linux*.tar.gz' -exec rm {} \;
