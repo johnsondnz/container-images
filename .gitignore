@@ -1,0 +1,4 @@
+# don't upload local passwords etc
+.password
+.secrets
+.env
