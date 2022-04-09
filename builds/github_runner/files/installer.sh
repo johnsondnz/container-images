@@ -22,6 +22,7 @@ find . -iname 'actions-runner-linux*.tar.gz' -exec tar xzf {} \;
 find . -iname 'actions-runner-linux*.tar.gz' -exec rm {} \;
 
 echo "==> Install extra dependencies"
+chown -R generic:generic /opt/actions-runner
 bash bin/installdependencies.sh
 
 echo "==> Cleanup"
