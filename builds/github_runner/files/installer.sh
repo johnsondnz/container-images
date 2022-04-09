@@ -16,14 +16,13 @@ apt update -qq
 xargs -a /etc/apt-requirements.txt apt install --no-install-recommends -yqq
 
 echo "==> Install GitHub Runner"
-mkdir -p /home/generic/actions-runner && cd actions-runner
+mkdir -p /opt/actions-runner && cd actions-runner
 curl -s https://api.github.com/repos/actions/runner/releases/latest | grep -E "browser_download_url.*linux-x64-([0-9\.]*)\.tar.gz" | cut -d : -f 2,3 | tr -d \" | wget -qi -
 find . -iname 'actions-runner-linux*.tar.gz' -exec tar xzf {} \;
-
-ls -lR /home/generic/actions-runner
+find . -iname 'actions-runner-linux*.tar.gz' -exec rm {} \;
 
 echo "==> Install extra dependencies"
-sh /home/docker/actions-runner/bin/installdependencies.sh
+sh bin/installdependencies.sh
 
 echo "==> Cleanup"
 apt purge -yqq git
