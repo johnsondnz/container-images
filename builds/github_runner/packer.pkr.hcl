@@ -32,7 +32,7 @@ source "docker" "container_image" {
   pull   = true
   changes = [
     "USER generic",
-    "STOPSIGNAL SIGINT",
+    "STOPSIGNAL TERM",
     "ENTRYPOINT [\"/tini\", \"-v\", \"--\", \"./start.sh\"]",
   ]
 }
