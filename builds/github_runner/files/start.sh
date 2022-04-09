@@ -35,6 +35,5 @@ fi
 
 trap 'cleanup; exit 130' INT
 trap 'cleanup; exit 143' TERM
-trap 'cleanup' SIGTERM
 
 exec ./run.sh & wait $!
