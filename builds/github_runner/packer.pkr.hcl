@@ -31,9 +31,8 @@ source "docker" "container_image" {
   commit = true
   pull   = true
   changes = [
-    "WORKDIR /opt/actions-runner",
     "USER generic",
-    "ENTRYPOINT [\"/entrypoint.sh\"]",
+    "ENTRYPOINT [\"./start.sh\"]",
   ]
 }
 build {
@@ -55,11 +54,6 @@ build {
   provisioner "file" {
     source      = "${path.root}/tests/tests.sh"
     destination = "/etc/tests.sh"
-  }
-
-  provisioner "file" {
-    source      = "${path.root}/files/entrypoint.sh"
-    destination = "/entrypoint.sh"
   }
 
   provisioner "file" {
@@ -86,10 +80,6 @@ build {
         "${local.build_version}",
         "latest"
       ]
-    }
-    // Test required packages are available 
-    post-processor "shell-local" {
-      inline = ["docker run --rm ${var.docker_registry}/${var.container_name}:latest /etc/tests.sh"]
     }
     // Push containers to gitlab container registry
     post-processor "docker-push" {}
