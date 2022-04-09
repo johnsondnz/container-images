@@ -4,8 +4,8 @@ set -e
 
 echo "==> Prepare system"
 export DEBIAN_FRONTEND=noninteractive
-apt update -qq
-apt install --no-install-recommends -yqq curl software-properties-common gnupg2
+apt-get update -qq
+apt-get install --no-install-recommends -yqq curl software-properties-common gnupg2
 
 echo "==> Install terraform-docs"
 curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.15.0/terraform-docs-v0.15.0-$(uname)-amd64.tar.gz
@@ -20,17 +20,21 @@ apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_re
 echo "==> Install any defined pip packages"
 [ -s /etc/pip-requirements.txt ] && echo "==> Install more pip packages" && pip3 install --quiet --no-cache-dir -r /etc/pip-requirements.txt || echo "==> No additional packages to install"
 
+echo "==> Install docker binary for command/control and local packer builds"
+curl -fsSL https://get.docker.com | sh
+usermod -aG docker generic
+
 echo "==> Install apt packages"
-apt update -qq
-xargs -a /etc/apt-requirements.txt apt install --no-install-recommends -yqq
+apt-get update -qq
+xargs -a /etc/apt-requirements.txt apt-get install --no-install-recommends -yqq
 
 echo "==> Install ms-vsliveshare.vsliveshare prerequisites"
 curl -fsSL https://aka.ms/vsls-linux-prereq-script | sh -
 
 echo "==> Cleanup"
-apt autoremove -yqq --purge
-apt autoclean
-apt clean
+apt-get autoremove -yqq --purge
+apt-get autoclean
+apt-get clean
 rm -rf /var/lib/apt/lists/*
 rm /etc/pip-requirements.txt
 rm /etc/apt-requirements.txt
