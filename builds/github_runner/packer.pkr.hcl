@@ -32,6 +32,7 @@ source "docker" "container_image" {
   pull   = true
   changes = [
     "USER generic",
+    "WORKDIR /",
     "ENTRYPOINT [\"tini\", \"-v\", \"--\", \"./start.sh\"]",
   ]
 }
