@@ -32,7 +32,7 @@ source "docker" "container_image" {
   pull   = true
   changes = [
     "USER generic",
-    "ENTRYPOINT [\"/tini\", \"-v\", \"--\", \"./start.sh\"]",
+    "ENTRYPOINT [\"tini\", \"-v\", \"--\", \"./start.sh\"]",
   ]
 }
 build {
