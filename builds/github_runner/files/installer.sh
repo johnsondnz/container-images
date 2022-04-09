@@ -21,9 +21,8 @@ curl -s https://api.github.com/repos/actions/runner/releases/latest | grep -E "b
 find . -iname 'actions-runner-linux*.tar.gz' -exec tar xzf {} \;
 find . -iname 'actions-runner-linux*.tar.gz' -exec rm {} \;
 
-echo "==> Install extra dependencies"
+echo "==> Set ownership of /opt/actions-runner"
 chown -R generic:generic /opt/actions-runner
-bash bin/installdependencies.sh
 
 echo "==> Cleanup"
 apt purge -yqq git
