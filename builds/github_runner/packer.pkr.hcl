@@ -33,7 +33,7 @@ source "docker" "container_image" {
   changes = [
     "WORKDIR /opt/actions-runner",
     "USER generic",
-    "ENTRYPOINT [\"exec /entrypoint.sh\"]",
+    "ENTRYPOINT [\"/entrypoint.sh\"]",
   ]
 }
 build {
