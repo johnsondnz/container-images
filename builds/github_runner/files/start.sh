@@ -5,7 +5,7 @@ ACCESS_TOKEN=$ACCESS_TOKEN
 GITHUB_USERNAME=$GITHUB_USERNAME
 REPOSITORY=$REPOSITORY
 
-if [[ -z $ORGANIZATION ]] && [[ -z $GITHUB_USERNAME ]]; then
+if ! [[ -z $ORGANIZATION ]] && ! [[ -z $GITHUB_USERNAME ]]; then
     echo "Set either ORGANIZATION or GITHUB_USERNAME with REPOSITORY, not both... exiting"
     exit 1
 fi
