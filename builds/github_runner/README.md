@@ -2,15 +2,17 @@
 Container for running Github actions locally.  The container requires a personal access token.  It will cleanup after itself when stopped or recreated.
 
 # Environment Variables
+Recommend using https://github.com/Tecnativa/docker-socket-proxy
 ## Personal repos
 - ACCESS_TOKEN="[token]"
 - GITHUB_USERNAME="[username]"
 - REPOSITORY="[repository name]"
+- DOCKER_HOST=tcp://localhost:2375
 
 ## Organisation Runners
 - ACCESS_TOKEN="[token]"
 - ORGANIZATION="[org]"
-
+- DOCKER_HOST=tcp://localhost:2375
 # docker-compose
 ## Personal
 ```
@@ -30,7 +32,8 @@ services:
       - ACCESS_TOKEN=<token>
       - GITHUB_USERNAME=<username>
       - REPOSITORY=<repository name>
-    volumes:
+      - DOCKER_HOST=tcp://<host or ip>:2375
+    volumes:  # not required if using Tecnativa/docker-socket-proxy
       - /var/run/docker.sock:/var/run/docker.sock
     logging:
       driver: "json-file"
@@ -57,7 +60,8 @@ services:
     environment:
       - ACCESS_TOKEN=<token>
       - ORGANIZATION=<org>
-    volumes:
+      - DOCKER_HOST=tcp://<host or ip>:2375
+    volumes:  # not required if using Tecnativa/docker-socket-proxy
       - /var/run/docker.sock:/var/run/docker.sock
     logging:
       driver: "json-file"

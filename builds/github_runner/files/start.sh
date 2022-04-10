@@ -4,6 +4,11 @@ ORGANIZATION=$ORGANIZATION
 ACCESS_TOKEN=$ACCESS_TOKEN
 GITHUB_USERNAME=$GITHUB_USERNAME
 REPOSITORY=$REPOSITORY
+DOCKER_HOST=$DOCKER_HOST
+
+if [[ -z $DOCKER_HOST ]]; then
+    echo "DOCKER_HOST environment varibale not found, assuming /var/run/docker.sock exists"
+fi
 
 if ! [[ -z $ORGANIZATION ]] && ! [[ -z $GITHUB_USERNAME ]]; then
     echo "Set either ORGANIZATION or GITHUB_USERNAME with REPOSITORY, not both... exiting"
