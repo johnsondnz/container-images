@@ -27,6 +27,7 @@ echo "==> Install dependencies"
 bash /opt/actions-runner/bin/installdependencies.sh
 
 echo "==> Install docker binary for command/control and packer builds"
+groupadd -g 998 docker
 curl -fsSL https://get.docker.com | sh
 usermod -aG docker generic
 
