@@ -7,8 +7,8 @@ jobs:
     name: Test self-hosted runner
     runs-on: self-hosted
     container:
-      image: busybox
+      image: alpine
       
     steps:
       - name: Output something
-        run: busybox | head -1
+        run: cat /etc/os-release
