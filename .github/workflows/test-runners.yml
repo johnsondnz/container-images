@@ -8,6 +8,10 @@ jobs:
     runs-on: self-hosted
     container:
       image: hello-world
+      
+    steps:
+      - name: Init
+        run: /init
 
 #    steps:
 #      - name: Start container
