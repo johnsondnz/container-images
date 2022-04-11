@@ -6,9 +6,11 @@ jobs:
   build:
     name: Test self-hosted runner
     runs-on: self-hosted
-    container:
-      image: alpine
+#    container:
+#      image: alpine
       
     steps:
+#      - name: Output something
+#        run: cat /etc/os-release
       - name: Output something
-        run: cat /etc/os-release
+        run: docker run --rm -d alpine cat /etc/os-release
