@@ -11,4 +11,4 @@ jobs:
       
     steps:
       - name: Output something
-        run: echo "==> This is a test job"
+        run: busybox | head -1
