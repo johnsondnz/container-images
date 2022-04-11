@@ -7,23 +7,8 @@ jobs:
     name: Test self-hosted runner
     runs-on: self-hosted
     container:
-      image: hello-world
+      image: busybox
       
     steps:
-      - name: Init
-        run: /init
-
-#    steps:
-#      - name: Start container
-#        run: docker run --name=nginx-test --rm -d lscr.io/linuxserver/nginx
-#
-#      - name: Sleep for 60 seconds
-#        uses: juliangruber/sleep-action@v1
-#        with:
-#          time: 60s
-#          
-#      - name: Stop container
-#        run: docker stop nginx-test
-#
-#      - name: Remove image
-#        run: docker image rm lscr.io/linuxserver/nginx
+      - name: Output something
+        run: echo "==> This is a test job"
