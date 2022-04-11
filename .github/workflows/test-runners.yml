@@ -6,18 +6,20 @@ jobs:
   build:
     name: Test self-hosted runner
     runs-on: self-hosted
+    container:
+      image: hello-world
 
-    steps:
-      - name: Start container
-        run: docker run --name=nginx-test --rm -d lscr.io/linuxserver/nginx
-
-      - name: Sleep for 60 seconds
-        uses: juliangruber/sleep-action@v1
-        with:
-          time: 60s
-          
-      - name: Stop container
-        run: docker stop nginx-test
-
-      - name: Remove image
-        run: docker image rm lscr.io/linuxserver/nginx
+#    steps:
+#      - name: Start container
+#        run: docker run --name=nginx-test --rm -d lscr.io/linuxserver/nginx
+#
+#      - name: Sleep for 60 seconds
+#        uses: juliangruber/sleep-action@v1
+#        with:
+#          time: 60s
+#          
+#      - name: Stop container
+#        run: docker stop nginx-test
+#
+#      - name: Remove image
+#        run: docker image rm lscr.io/linuxserver/nginx
