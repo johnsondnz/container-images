@@ -1,0 +1,20 @@
+name: Test self-hosted runner
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Test self-hosted runner
+    runs-on: self-hosted
+
+    steps:
+      - name: Start container
+        run: docker run --name=nginx-test --rm -d lscr.io/linuxserver/nginx
+
+      - name: Sleep for 60 seconds
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 60s
+          
+      - name: Stop container
+        run: docker stop nginx-test
