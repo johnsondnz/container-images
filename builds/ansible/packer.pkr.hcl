@@ -32,8 +32,8 @@ source "docker" "container_image" {
   pull   = true
   changes = [
     "USER ${var.default_user}",
-    "WORKDIR /",
-    "ENTRYPOINT [\"tini\", \"-v\", \"--\", \"./start.sh\"]",
+    "WORKDIR /data",
+    "ENTRYPOINT [\"/entrypoint.sh\"]",
   ]
 }
 build {
