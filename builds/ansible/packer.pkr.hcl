@@ -58,13 +58,13 @@ build {
   }
 
   provisioner "file" {
-    source      = "${path.root}/files/installer.sh"
-    destination = "/installer.sh"
+    source      = "${path.root}/files/entrypoint.sh"
+    destination = "/entrypoint.sh"
   }
 
   provisioner "file" {
-    source      = "${path.root}/files/start.sh"
-    destination = "/start.sh"
+    source      = "${path.root}/files/installer.sh"
+    destination = "/installer.sh"
   }
 
   provisioner "shell" {
