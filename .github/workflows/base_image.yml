@@ -14,7 +14,7 @@ env:
 jobs:
   build:
     name: Build base_image container
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: contains( github.ref, 'master')
 
     steps:

@@ -14,7 +14,7 @@ env:
 jobs:
   build:
     name: Build sonarr_cleaner container
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: contains( github.ref, 'master')
 
     steps:
