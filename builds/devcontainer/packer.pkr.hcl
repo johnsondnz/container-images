@@ -63,11 +63,17 @@ build {
     destination = "/installer.sh"
   }
 
+  provisioner "file" {
+    source      = "${path.root}/files/goinstall.sh"
+    destination = "/goinstall.sh"
+  }
+
   provisioner "shell" {
     inline = [
       "bash -c /installer.sh",
+      "bash -c /goinstall.sh",
       "echo 'export GPG_TTY=\"$(tty)\"' >> /home/${var.default_user}/.zshrc",
-      "sed -i 's/robbyrussell/agnoster/g' /home/${var.default_user}/.zshrc",
+      "sed -i 's/robbyrussell/amuse/g' /home/${var.default_user}/.zshrc",
       "echo ${var.default_user} ALL=\"(root)\" NOPASSWD:ALL > /etc/sudoers.d/${var.default_user}",
       "chmod 0440 /etc/sudoers.d/${var.default_user}",
     ]

@@ -15,7 +15,8 @@
         "donjayamanne.githistory",
         "eamodio.gitlens",
         "mhutchie.git-graph",
-        "waderyan.gitblame"
+        "waderyan.gitblame",
+        "golang.Go"
     ],
     "settings": {
         "editor.formatOnSave": true,
