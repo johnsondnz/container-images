@@ -18,7 +18,7 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 
 echo "==> Install any defined pip packages"
-[ -s /etc/pip-requirements.txt ] && echo "==> Install more pip packages" && pip3 install --quiet --no-cache-dir -r /etc/pip-requirements.txt || echo "==> No additional packages to install"
+[ -s /etc/pip-requirements.txt ] && echo "==> Install more pip packages" && pip3 install --quiet --no-cache-dir -r /etc/pip-requirements.txt || echo "==> No additional pip packages to install"
 
 echo "==> Install docker binary for command/control and local packer builds"
 curl -fsSL https://get.docker.com | sh
@@ -26,10 +26,13 @@ usermod -aG docker generic
 
 echo "==> Install apt packages"
 apt-get update -qq
-xargs -a /etc/apt-requirements.txt apt-get install --no-install-recommends -yqq
+[ -s /etc/apt-requirements.txt ] && echo "==> Install more apt packages" && xargs -a /etc/apt-requirements.txt apt-get install --no-install-recommends -yqq || echo "==> No additional apt packages to install"
 
 echo "==> Install ms-vsliveshare.vsliveshare prerequisites"
 curl -fsSL https://aka.ms/vsls-linux-prereq-script | sh -
+
+echo "==> Setup default shell for generic user"
+chsh -s $(which zsh) generic
 
 echo "==> Cleanup"
 apt-get autoremove -yqq --purge
