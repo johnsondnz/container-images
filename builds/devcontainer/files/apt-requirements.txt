@@ -8,3 +8,4 @@ vim
 packer
 terraform
 openssh-client
+build-essential
