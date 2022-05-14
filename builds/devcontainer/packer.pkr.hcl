@@ -76,9 +76,7 @@ build {
       "sed -i 's/robbyrussell/amuse/g' /home/${var.default_user}/.zshrc",
       "echo ${var.default_user} ALL=\"(root)\" NOPASSWD:ALL > /etc/sudoers.d/${var.default_user}",
       "chmod 0440 /etc/sudoers.d/${var.default_user}",
-      "chown -R ${var.default_user}:${var.default_user} /home/${var.default_user}",
-      "curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash",
-      "curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      "chown -R ${var.default_user}:${var.default_user} /home/${var.default_user}"
     ]
   }
 
