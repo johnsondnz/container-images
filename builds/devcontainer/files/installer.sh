@@ -34,8 +34,8 @@ curl -fsSL https://aka.ms/vsls-linux-prereq-script | sh -
 echo "==> Install helm and kubectl"
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 curl -o /tmp/kubectl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
-kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
+kubectl completion bash | tee /etc/bash_completion.d/kubectl > /dev/null
 rm /tmp/kubectl
 
 echo "==> Install helm-diff plugin"
