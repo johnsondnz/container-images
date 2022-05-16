@@ -11,3 +11,4 @@ openssh-client
 build-essential
 bash-completion
 less
+dnsutils
