@@ -38,6 +38,9 @@ sudo install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
 kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
 rm /tmp/kubectl
 
+echo "==> Install helm-diff plugin"
+helm plugin install https://github.com/databus23/helm-diff
+
 echo "==> Setup default shell for generic user"
 chsh -s $(which zsh) generic
 
