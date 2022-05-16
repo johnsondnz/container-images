@@ -1,6 +1,3 @@
-curl
-wget
-cron
 bzip2
 git
 sudo
@@ -9,6 +6,3 @@ packer
 terraform
 openssh-client
 build-essential
-bash-completion
-less
-dnsutils

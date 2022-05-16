@@ -1,4 +1,3 @@
-curl
 jq
 build-essential
 libssl-dev

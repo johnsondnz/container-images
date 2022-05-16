@@ -1,5 +1,2 @@
-curl
-wget
-cron
 bzip2
 restic
