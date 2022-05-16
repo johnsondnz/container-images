@@ -2,3 +2,6 @@ curl
 wget
 cron
 zsh
+less
+dnsutils
+bash-completion
