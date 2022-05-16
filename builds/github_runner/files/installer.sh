@@ -36,6 +36,15 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 apt-get update && apt-get install -y terraform
 
+echo "==> Install helm and kubectl"
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+curl -o /tmp/kubectl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
+rm /tmp/kubectl
+
+echo "==> Install helm-diff plugin"
+helm plugin install https://github.com/databus23/helm-diff
+
 echo "==> Cleanup"
 apt-get autoremove -yqq --purge
 apt-get autoclean
