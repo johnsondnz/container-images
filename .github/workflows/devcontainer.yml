@@ -32,4 +32,4 @@ jobs:
         run: packer validate -var-file ${{ env.DIR }}/packer.auto.pkrvars.hcl ${{ env.DIR }}/packer.pkr.hcl
 
       - name: Packer build
-        run: packer build  -var-file ${{ env.DIR }}/packer.auto.pkrvars.hcl ${{ env.DIR }}/packer.pkr.hcl
+        run: packer build -var ghcr_password=${{ secrets.GITHUB_TOKEN }} -var-file ${{ env.DIR }}/packer.auto.pkrvars.hcl ${{ env.DIR }}/packer.pkr.hcl

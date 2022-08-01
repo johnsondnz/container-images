@@ -22,6 +22,12 @@ variable "build_type" {
   default = ""
 }
 
+variable "ghcr_password" {
+  type    = string
+  default = ""
+  sensitive = true
+}
+
 locals {
   build_version = formatdate("YYYY.MM", timestamp())
 }
@@ -88,6 +94,11 @@ build {
       inline = ["docker run --rm ${var.docker_registry}/${var.container_name}:latest /etc/tests.sh"]
     }
     // Push containers to gitlab container registry
-    post-processor "docker-push" {}
+    post-processor "docker-push" {
+      login = true
+      login_server = "ghcr.io"
+      login_username = "johnsondnz"
+      login_password = "${var.ghcr_password}"
+    }
   }
 }
