@@ -80,6 +80,7 @@ build {
       "bash -c /goinstall.sh",
       "echo 'export GPG_TTY=\"$(tty)\"' >> /home/${var.default_user}/.zshrc",
       "sed -i 's/robbyrussell/amuse/g' /home/${var.default_user}/.zshrc",
+      "mkdir -p /etc/sudoers.d/",
       "echo ${var.default_user} ALL=\"(root)\" NOPASSWD:ALL > /etc/sudoers.d/${var.default_user}",
       "chmod 0440 /etc/sudoers.d/${var.default_user}",
       "chown -R ${var.default_user}:${var.default_user} /home/${var.default_user}"
