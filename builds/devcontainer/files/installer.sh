@@ -14,8 +14,8 @@ install -o root -g root -m 0755 terraform-docs /usr/bin/terraform-docs
 rm ./terraform-docs.tar.gz
 
 echo "==> Install hashicorp repo"
-curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
-apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+curl https://apt.releases.hashicorp.com/gpg | gpg --dearmor | apt-key add -
+apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 
 echo "==> Install any defined pip packages"
 [ -s /etc/pip-requirements.txt ] && echo "==> Install more pip packages" && pip3 install --quiet --no-cache-dir -r /etc/pip-requirements.txt || echo "==> No additional pip packages to install"
